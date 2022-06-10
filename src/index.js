@@ -36,6 +36,7 @@ const cacheableResponse = ({
   });
 
   console.debug("cache: ", cache);
+  console.debug("getKey: ", getKey);
 
   const memoGet = memoize(get, cache, {
     key: getKey,
@@ -46,6 +47,7 @@ const cacheableResponse = ({
   });
 
   return async (opts) => {
+    console.debug("opts: ", opts);
     const { req, res } = opts;
     const [raw, { forceExpiration, hasValue, key, isExpired, isStale }] =
       await memoGet(opts);
