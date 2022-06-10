@@ -35,6 +35,8 @@ const cacheableResponse = ({
     ...compressOpts,
   });
 
+  console.debug("cache: ", cache);
+
   const memoGet = memoize(get, cache, {
     key: getKey,
     objectMode: true,
