@@ -30,7 +30,8 @@ declare namespace CacheableResponse {
     get: (
       opts: Options
     ) => Promise<
-      (Optional<Cache<Data>, "etag" | "ttl" | "createdAt"> & GetReturnProps) | null
+      | (Optional<Cache<Data>, "etag" | "ttl" | "createdAt"> & GetReturnProps)
+      | null
     >;
 
     /**
@@ -59,7 +60,7 @@ declare namespace CacheableResponse {
 
     /** ttl default to 7200000 */
     ttl?: number;
-    
+
     /** ttl default to 3600000 */
     staleTtl?: number | boolean;
 
@@ -67,6 +68,8 @@ declare namespace CacheableResponse {
     serialize?: (o: any) => string;
 
     deserialize?: (o: string) => any;
+
+    isPublic?: boolean;
   }
 
   export type GetOpts = HttpContext & Props;
