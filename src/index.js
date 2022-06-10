@@ -52,6 +52,7 @@ const cacheableResponse = ({
     const [raw, { forceExpiration, hasValue, key, isExpired, isStale }] =
       await memoGet(opts);
 
+    console.debug("key ; ", key);
     if (res.finished) return;
 
     const result = (await decompress(raw)) || {};
