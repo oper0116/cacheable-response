@@ -67,7 +67,6 @@ const setHeaders = ({
   const maxAge = toSeconds(diff);
   const revalidation = staleTtl ? toSeconds(staleTtl) : 0;
 
-  let isPublic;
   let cacheControl = `${
     isPublic ? "public" : "private"
   }, must-revalidate, max-age=${maxAge}`;
