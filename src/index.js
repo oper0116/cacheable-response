@@ -46,12 +46,13 @@ const cacheableResponse = ({
     value: compress,
   });
 
+  console.debug("memoGet: ", memoGet);
+
   return async (opts) => {
+    console.debug("return");
     const { req, res } = opts;
     const [raw, { forceExpiration, hasValue, key, isExpired, isStale }] =
       await memoGet(opts);
-
-    console.debug("memoGet: ", memoGet);
 
     if (res.finished) return;
 
@@ -66,6 +67,8 @@ const cacheableResponse = ({
       ttl = memoGet.ttl(result),
       ...props
     } = result;
+
+    console.debug("result : ", result);
 
     const etag = cachedEtag || getEtag(serialize(result));
     const ifNoneMatch = req.headers["if-none-match"];
