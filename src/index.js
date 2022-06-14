@@ -6,16 +6,12 @@ const memoize = require("@keyvhq/memoize");
 const Keyv = require("@keyvhq/core");
 const assert = require("assert");
 const getEtag = require("etag");
-const KeyvRedis = require("@keyv/redis");
 
 const { createKey, isFunction, setHeaders, size } = require("./util");
 
 const cacheableResponse = ({
   bypassQueryParameter = "force",
-  cache = new Keyv({
-    namespace: "ssr",
-    store: new KeyvRedis({ uri: "redis://:1111@127.0.0.1:6379" }),
-  }),
+  cache = new Keyv({ namespace: "ssr" }),
   compress: enableCompression = false,
   get,
   key: getKey = createKey(bypassQueryParameter),
