@@ -96,6 +96,8 @@ const cacheableResponse = ({
       ttl,
       isPublic,
     });
+    console.debug("forceExpiration : ", forceExpiration);
+    console.debug("isModified : ", isModified);
 
     if (!forceExpiration && !isModified) {
       res.statusCode = 304;
