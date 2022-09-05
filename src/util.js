@@ -60,7 +60,6 @@ const setHeaders = ({
   ttl,
   isPublic,
 }) => {
-  console.debug("isPublic: ", isPublic);
   // Specifies the maximum amount of time a resource
   // will be considered fresh in seconds
   const diff = forceExpiration ? 0 : createdAt + ttl - Date.now();

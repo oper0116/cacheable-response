@@ -35,9 +35,6 @@ const cacheableResponse = ({
     ...compressOpts,
   });
 
-  console.debug("cache: ", cache);
-  console.debug("getKey: ", getKey);
-
   const memoGet = memoize(get, cache, {
     key: getKey,
     objectMode: true,
@@ -47,7 +44,6 @@ const cacheableResponse = ({
   });
 
   return async (opts) => {
-    console.debug("opts: ", opts);
     const { req, res } = opts;
     const [raw, { forceExpiration, hasValue, key, isExpired, isStale }] =
       await memoGet(opts);
@@ -56,8 +52,6 @@ const cacheableResponse = ({
 
     const result = (await decompress(raw)) || {};
     const isHit = !forceExpiration && !isExpired && hasValue;
-
-    console.debug("hasValue: ", hasValue);
 
     const {
       createdAt = Date.now(),
@@ -96,8 +90,6 @@ const cacheableResponse = ({
       ttl,
       isPublic,
     });
-    console.debug("forceExpiration : ", forceExpiration);
-    console.debug("isModified : ", isModified);
 
     if (!forceExpiration && !isModified) {
       res.statusCode = 304;
