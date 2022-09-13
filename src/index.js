@@ -18,7 +18,6 @@ const cacheableResponse = ({
   send,
   staleTtl: rawStaleTtl = 3600000,
   ttl: rawTtl = 86400000,
-  ttlExpireSeconds = 86400000,
   isPublic = true,
   ...compressOpts
 } = {}) => {
@@ -29,9 +28,7 @@ const cacheableResponse = ({
     ? rawStaleTtl
     : ({ staleTtl = rawStaleTtl } = {}) => staleTtl;
 
-  const ttl = isFunction(rawTtl)
-    ? rawTtl(ttlExpireSeconds)
-    : ({ ttl = rawTtl } = {}) => ttl;
+  const ttl = isFunction(rawTtl) ? rawTtl : ({ ttl = rawTtl } = {}) => ttl;
 
   const { serialize, compress, decompress } = createCompress({
     enable: enableCompression,

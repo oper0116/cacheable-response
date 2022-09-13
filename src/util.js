@@ -63,6 +63,8 @@ const setHeaders = ({
   // Specifies the maximum amount of time a resource
   // will be considered fresh in seconds
   const diff = forceExpiration ? 0 : createdAt + ttl - Date.now();
+
+  console.debug("Date.now(): ", Date.now());
   const maxAge = toSeconds(diff);
   const revalidation = staleTtl ? toSeconds(staleTtl) : 0;
 
