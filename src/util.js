@@ -64,6 +64,7 @@ const setHeaders = ({
   // will be considered fresh in seconds
   const diff = forceExpiration ? 0 : createdAt + ttl - Date.now();
 
+  console.debug("createdAt: ", createdAt);
   console.debug("Date.now(): ", Date.now());
   console.debug("diff: ", diff);
   const maxAge = toSeconds(diff);
