@@ -65,6 +65,7 @@ const setHeaders = ({
   const diff = forceExpiration ? 0 : createdAt + ttl - Date.now();
 
   console.debug("Date.now(): ", Date.now());
+  console.debug("diff: ", diff);
   const maxAge = toSeconds(diff);
   const revalidation = staleTtl ? toSeconds(staleTtl) : 0;
 
